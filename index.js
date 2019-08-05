@@ -120,24 +120,14 @@ class Administrator extends Component {
   save = () => {
 
     const len = Realusers.length
-    Realusers.splice(0,len)
-    RealmailAddresses.splice(0,len)
-    Realcompanies.splice(0,len)
+    Realusers.splice(0,len, ...this.state.users)
+    RealmailAddresses.splice(0,len, ...this.state.mailAddresses)
+    Realcompanies.splice(0,len, ...this.state.companies)
     Realdata.splice(0,len)
-
-    this.state.users.map((user, i)=>{
-      Realusers.push(user)
-      RealmailAddresses.push(this.state.mailAddresses[i])
-      Realcompanies.push(this.state.companies[i])
-      const copy = [...this.state.data[i]]
-      Realdata.push(copy)
+    //Realdata is a constant, so no direct assignment
+    this.state.data.map((data)=>{
+      Realdata.push([...data])
     })
-
-
-    this.setState({users: [...Realusers],
-      mailAddresses: [...RealmailAddresses],
-      companies: [...Realcompanies],
-      data: JSON.parse(JSON.stringify(Realdata))})
 
   }
 
