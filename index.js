@@ -181,39 +181,32 @@ class Administrator extends Component {
   }
 
   renderLine = () => {
-
-
     return (
-      this.state.users.map((user, i)=>{
-        const data = this.state.data[i]
+      this.state.data.map((data, i)=>{
         return(
           <tr>
-
             {data.map((topic, j) => {
               const cellStyle = this.state.markI === i
                 ?(this.state.markJ === j?cellXHL:cellHL)
                 :(this.state.markJ === j?cellHL:cell)
-              const checkboxStyle = this.state.markI === i && this.state.markJ === j ? styles.checkboxHL : styles.checkbox
+              const checkboxStyle = this.state.markI === i && this.state.markJ === j
+                ? styles.checkboxHL
+                : styles.checkbox
 
               return(
                 <td style={cellStyle}
                     onMouseEnter={this.mark.bind(this, i,j)}
                     title={operation.topics[j]}
-
                 >
                   <View style={[topic?{backgroundColor:Colors.green}:{backgroundColor:Colors.pink}, checkboxStyle]}
                         onClick={this.changeEntry.bind(this, i, j)}
                   />
-
                 </td>
               )
-
             })}
           </tr>
         )
-
       })
-
     )
   }
 
@@ -245,7 +238,6 @@ class Administrator extends Component {
   renderUsers = () => {
     return (
       this.state.users.map((user, i)=>{
-        const data = this.state.data[i]
 
         const cellStyle = this.state.markI === i
           ?cellHL:cell
